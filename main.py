@@ -31,7 +31,7 @@ async def identify(interaction,handle:str):
         list_problem = await get_list_problem()
         problem_auth = random.choice(list_problem)
         await interaction.response.send_message(f'Vui lòng nộp mã nguồn dịch lỗi ở [bài này]({site}/problem/{problem_auth}) trong vòng một phút')
-        await asyncio.sleep(10)
+        await asyncio.sleep(60)
         list_submissions = ((await get_submissons_user(handle))[0]['data'])
       
         finish = 0
