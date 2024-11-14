@@ -68,12 +68,14 @@ async def CreateRole(interaction):
 )
 @commands.has_permissions(administrator=True)
 async def update_rating(interaction):
+    await interaction.response.send_message("Đang cập nhật..")
     list_users = await get_list_user()
     for user in list_users:
+        
         member_discord = await interaction.guild.fetch_member(user[0])
         rating = await get_name_rating(await get_rating(user[1]))
         await member_discord.remove_roles(discord.utils.get(interaction.guild.roles, name=user[2]))
         await member_discord.add_roles(discord.utils.get(interaction.guild.roles, name=rating))
         await edit_user(user[0],"rating",rating)
-    await interaction.response.send_message("Đã cập nhật thành công")
+    await interaction.edit_original_response("Đã cập nhật thành công")
 client.run(token)
